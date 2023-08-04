@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+
+<head>
+<link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    <!-- <style>
+    	body{
+    		text-align: center;
+    		
+    		
+    	}
+    	
+    	.table{
+    		margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+    	}
+    </style> --><style>
+     header{
+            /* display: grid;
+            grid-template-columns: 4fr 4fr 4fr 4fr; */
+            display: flex;
+            justify-content: space-between;
+            font-size: 25px;
+            font-family: Arial;
+            /* padding: 5px; */
+            
+        }
+    .brand-title{
+            font-weight: bold;
+            font-size: 30px;
+        }
+        nav span{
+            margin-right: 15px;
+        }
+        header, nav, main, aside, footer{
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            
+        }
+        main{
+            height: 300px;
+        }
+        @media screen and (orientation:landscape){
+            body{
+                display: grid;
+                grid-template-columns: 2fr 8fr 2fr;
+            }
+            header {
+                grid-row: 1;
+                grid-column: 1/4;
+            }
+            nav {
+                grid-row: 2;
+                grid-column: 1;
+            }
+            main {
+                grid-row: 2;
+                grid-column: 2;
+            }
+            aside {
+                grid-row: 2;
+                grid-column: 3;
+            }
+            footer {
+                grid-row: 3;
+                grid-column: 1/4;
+            }
+        }
+        @media screen and (orientation:portrait) {
+            body {
+                display: grid;
+                grid-template-columns: 12fr;
+            }
+            header {
+                grid-row: 1;
+            }
+            nav {
+                grid-row: 2;
+            }
+            main {
+                grid-row:4;
+            }
+            aside {
+                grid-row: 3;
+            }
+            footer {
+                grid-row: 5;
+            }
+        }
+        .form{
+    		margin-left: auto;
+            margin-right: auto;
+    	}
+    </style>
+</head>
+<body >
+<header>
+        <div class="brand-title">Funwork 4.0</div>
+        <div>
+            
+        </div>
+        <div>
+            <nav>
+                <span class="bi bi-search"></span>
+                <span class="bi bi-person"></span>
+                <span class="bi bi-heart"></span>
+                <span class="bi bi-cart"></span>
+            </nav>
+        </div>
+    </header>
+    <nav>Navigation</nav>
+    <main><h1>Employee Form</h1>
+    <form th:action="@{/saveProject}" th:object="${project}" method="post" class="form">
+    
+        <table class="table" border="3">
+            <tr>
+                <td><label for="projectName">Project Name:</label></td>
+                <td><input type="text" id="projectName" th:field="*{projectName}" required></td>
+            </tr>
+            <tr>
+                <td><label for="projectCode">Project Code:</label></td>
+                <td><input type="text" id="projectCode" th:field="*{projectCode}" required></td>
+            </tr>
+            <tr>
+                <td><label for="contactPerson">Contact Person:</label></td>
+                <td><input type="text" id="contactPerson" th:field="*{contactPerson}" required></td>
+            </tr>
+            <tr>
+                <td><label for="startDate">Start Date:</label></td>
+                <td><input type="date" id="startDate" name="startDate" th:field="*{startDate}" required></td>
+            </tr>
+            <tr>
+                <td><label for="endDate">End Date:</label></td>
+                <td><input type="date" id="endDate" name="startDate" th:field="*{endDate}" required></td>
+            </tr>
+            <tr>
+                <td><label for="projectRemark">Remarks:</label></td>
+                <td><input type="text" id="projectRemark" th:field="*{projectRemark}" required></td>
+            </tr>
+             <tr>
+    <td><label for="customerId">Customer Name:</label></td>
+    <td>
+        <select id="customerId" name="customerId">
+            <option value="">Select Customer</option>
+            <option th:each="cus : ${customers}" th:value="${cus.customerId}" th:text="${cus.customerName}"></option>
+        </select>
+    </td>
+</tr>
+<tr>
+   <td><label for="managerId">Manager Name:</label></td>
+    <td>
+        <select id="managerId" name="managerId">
+            <option value="">Select Manager</option>
+            <option th:each="man : ${managers}" th:value="${man.managerId}" th:text="${man.managerName}"></option>
+        </select>
+    </td>
+</tr>
+        </table>
+        <br><button type="submit">Submit</button>
+    </form></main>
+    <aside>Ads</aside>
+    <footer>Footer</footer>
+    
+</body>
+</html>
